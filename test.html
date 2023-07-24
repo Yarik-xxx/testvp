@@ -3,8 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
-  <iframe width="339" height="603" src="https://www.youtube.com/embed/fsty7eH4MDE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <div id="player"></div>
+  <script>
+  // Переменная для хранения объекта плеера
+  let player;
+
+  // Функция инициализации плеера
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '640', // Высота плеера
+      width: '360',  // Ширина плеера
+      videoId: 'fsty7eH4MDE', // ID видео для воспроизведения
+      playerVars: {
+        // Список параметров для плеера (дополнительные параметры можно добавить по необходимости)
+        autoplay: 1, // Автовоспроизведение
+        controls: 1, // Отображение элементов управления (1 - показать, 0 - скрыть)
+        modestbranding: 1, // Скрывает логотип YouTube
+        rel: 0, // Отключает рекомендации в конце воспроизведения
+        showinfo: 0, // Скрывает информацию о видео
+      },
+      events: {
+        // Обработка событий плеера
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // Функция, вызываемая при готовности плеера
+  function onPlayerReady(event) {
+    // Плеер готов, можно проигрывать видео
+    event.target.playVideo();
+  }
+
+  // Функция, вызываемая при изменении состояния плеера
+  function onPlayerStateChange(event) {
+    // Здесь можно реагировать на различные события, например, остановка видео, пауза и т.д.
+  }
+</script>
 </body>
 </html>
