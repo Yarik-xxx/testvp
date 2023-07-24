@@ -1,48 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <title>YouTube Shorts-like Video Player</title>
+  <style>
+    /* Основной контейнер для плеера */
+    #player-container {
+      width: 360px;
+      height: 640px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
-  <div id="player"></div>
+  <div id="player-container">
+    <!-- Здесь будет размещен плеер -->
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-  // Переменная для хранения объекта плеера
-  let player;
+    // Переменная для хранения объекта плеера
+    let player;
 
-  // Функция инициализации плеера
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '640', // Высота плеера
-      width: '360',  // Ширина плеера
-      videoId: 'fsty7eH4MDE', // ID видео для воспроизведения
-      playerVars: {
-        // Список параметров для плеера (дополнительные параметры можно добавить по необходимости)
-        autoplay: 1, // Автовоспроизведение
-        controls: 1, // Отображение элементов управления (1 - показать, 0 - скрыть)
-        modestbranding: 1, // Скрывает логотип YouTube
-        rel: 0, // Отключает рекомендации в конце воспроизведения
-        showinfo: 0, // Скрывает информацию о видео
-      },
-      events: {
-        // Обработка событий плеера
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
+    // Функция инициализации плеера
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player-container', {
+        height: '640', // Высота плеера
+        width: '360',  // Ширина плеера
+        videoId: 'fsty7eH4MDE', // ID видео для воспроизведения
+        playerVars: {
+          // Список параметров для плеера (дополнительные параметры можно добавить по необходимости)
+          autoplay: 1, // Автовоспроизведение
+          controls: 1, // Отображение элементов управления (1 - показать, 0 - скрыть)
+          modestbranding: 1, // Скрывает логотип YouTube
+          rel: 0, // Отключает рекомендации в конце воспроизведения
+          showinfo: 0, // Скрывает информацию о видео
+        },
+        events: {
+          // Обработка событий плеера
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
 
-  // Функция, вызываемая при готовности плеера
-  function onPlayerReady(event) {
-    // Плеер готов, можно проигрывать видео
-    event.target.playVideo();
-  }
+    // Функция, вызываемая при готовности плеера
+    function onPlayerReady(event) {
+      // Плеер готов, можно проигрывать видео
+      event.target.playVideo();
+    }
 
-  // Функция, вызываемая при изменении состояния плеера
-  function onPlayerStateChange(event) {
-    // Здесь можно реагировать на различные события, например, остановка видео, пауза и т.д.
-  }
-</script>
+    // Функция, вызываемая при изменении состояния плеера
+    function onPlayerStateChange(event) {
+      // Здесь можно реагировать на различные события, например, остановка видео, пауза и т.д.
+    }
+  </script>
 </body>
 </html>
