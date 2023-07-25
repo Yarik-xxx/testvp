@@ -15,9 +15,9 @@
   </style>
 </head>
 <body>
-  <div id="player-container">
+  <iframe id="player-container">
     <!-- Здесь будет размещен плеер -->
-  </div>
+  </iframe>
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
@@ -32,16 +32,15 @@
         videoId: 'fsty7eH4MDE', // ID видео для воспроизведения
         playerVars: {
           // Список параметров для плеера (дополнительные параметры можно добавить по необходимости)
-          autoplay: 1, // Автовоспроизведение
-          controls: 1, // Отображение элементов управления (1 - показать, 0 - скрыть)
+          autoplay: 0, // Автовоспроизведение
+          controls: 0, // Отображение элементов управления (1 - показать, 0 - скрыть)
           modestbranding: 1, // Скрывает логотип YouTube
           rel: 0, // Отключает рекомендации в конце воспроизведения
           showinfo: 0, // Скрывает информацию о видео
         },
         events: {
           // Обработка событий плеера
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
+          'onReady': onPlayerReady
         }
       });
     }
@@ -50,11 +49,6 @@
     function onPlayerReady(event) {
       // Плеер готов, можно проигрывать видео
       event.target.playVideo();
-    }
-
-    // Функция, вызываемая при изменении состояния плеера
-    function onPlayerStateChange(event) {
-      // Здесь можно реагировать на различные события, например, остановка видео, пауза и т.д.
     }
   </script>
 </body>
