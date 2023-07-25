@@ -10,13 +10,15 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       overflow: hidden;
+      margin: auto;
     }
   </style>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <iframe id="player-container">
+  <div id="player-container">
     <!-- Здесь будет размещен плеер -->
-  </iframe>
+  </div>
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
@@ -33,13 +35,14 @@
           // Список параметров для плеера (дополнительные параметры можно добавить по необходимости)
           autoplay: 1, // Автовоспроизведение
           controls: 1, // Отображение элементов управления (1 - показать, 0 - скрыть)
-          modestbranding: 0, // Скрывает логотип YouTube
+          modestbranding: 1, // Скрывает логотип YouTube
           rel: 0, // Отключает рекомендации в конце воспроизведения
           showinfo: 0, // Скрывает информацию о видео
         },
         events: {
           // Обработка событий плеера
-          'onReady': onPlayerReady
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
         }
       });
     }
@@ -49,7 +52,11 @@
       // Плеер готов, можно проигрывать видео
       event.target.playVideo();
     }
+
+    // Функция, вызываемая при изменении состояния плеера
+    function onPlayerStateChange(event) {
+      // Здесь можно реагировать на различные события, например, остановка видео, пауза и т.д.
+    }
   </script>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </body>
 </html>
